@@ -50,6 +50,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initData() {
+        Log.d("HomeFragment","initData--------");
         List<HomeItemData> list = new ArrayList<>();
         list.add(new HomeItemData(HomeItemData.CALCULATE_TILI_TAG, "1 计算体活"));
         getAdapter().add(list);
