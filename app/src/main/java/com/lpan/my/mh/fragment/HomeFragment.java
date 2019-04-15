@@ -38,11 +38,9 @@ public class HomeFragment extends BaseFragment {
         mRecyclerView.setAdapter(getAdapter());
 
         initData();
-        Log.d("HomeFragment","initView--------dd");
     }
 
     private HomeAdapter getAdapter() {
-        Log.d("HomeFragment","getAdapter--------22222");
         if (mAdapter == null) {
             mAdapter = new HomeAdapter(getActivity());
         }
@@ -50,7 +48,6 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initData() {
-        Log.d("HomeFragment","initData--------");
         List<HomeItemData> list = new ArrayList<>();
         list.add(new HomeItemData(HomeItemData.CALCULATE_TILI_TAG, "1 计算体活"));
         getAdapter().add(list);
