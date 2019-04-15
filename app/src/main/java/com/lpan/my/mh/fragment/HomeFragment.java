@@ -3,6 +3,7 @@ package com.lpan.my.mh.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.lpan.my.mh.R;
@@ -37,6 +38,7 @@ public class HomeFragment extends BaseFragment {
         mRecyclerView.setAdapter(getAdapter());
 
         initData();
+        Log.d("HomeFragment","initView--------dd");
     }
 
     private HomeAdapter getAdapter() {
