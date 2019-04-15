@@ -42,6 +42,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private HomeAdapter getAdapter() {
+        Log.d("HomeFragment","getAdapter--------");
         if (mAdapter == null) {
             mAdapter = new HomeAdapter(getActivity());
         }
