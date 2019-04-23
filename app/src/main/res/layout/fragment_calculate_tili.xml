@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     android:orientation="vertical">
 
     <EditText
@@ -10,9 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@null"
-        android:hint="lv"
-        android:inputType="number"
-        android:text="172"/>
+        android:hint="等级"
+        android:inputType="number"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,21 +21,21 @@
 
 
         <EditText
-            android:id="@+id/tili_et"
+            android:id="@+id/jian_ti_et"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="tili"
+            android:hint="健体"
             android:inputType="number"/>
 
         <EditText
-            android:id="@+id/huoli_et"
+            android:id="@+id/yang_sheng_et"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="huoli"
+            android:hint="养生"
             android:inputType="number"/>
     </LinearLayout>
 
@@ -51,7 +51,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="tili current"
+            android:hint="当前体力"
             android:inputType="number"/>
 
         <EditText
@@ -60,15 +60,15 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="huoli current"
+            android:hint="当前活力"
             android:inputType="number"/>
     </LinearLayout>
 
     <Button
         android:id="@+id/calculate_bt"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:text="calculate"/>
+        android:text="计算"/>
 
 
     <TextView
