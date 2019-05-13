@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="探究口袋版值不值得用RMB充点卡飘经验"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CBG3000W = "/>
+
+            <EditText
+                android:id="@+id/cbg_price_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="单位元"
+                android:text="240"
+                android:maxLines="1"
+                android:inputType="numberDecimal"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000点卡 = "/>
+
+            <EditText
+                android:id="@+id/game_time_price_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="单位元"
+                android:text="98"
+                android:maxLines="1"
+                android:inputType="numberDecimal"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任务1:强化石任务"
+                android:textColor="#f67"/>
+
+            <Button
+                android:id="@+id/calculate_qiang_hua_bt"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:text="计算"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="需要点卡数 = "/>
+
+            <EditText
+                android:id="@+id/qiang_hua_cost_edit"
+                android:layout_width="60dp"
+                android:text="178"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="单位点"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="强化石价格 = "/>
+
+            <EditText
+                android:id="@+id/qiang_hua_price_edit"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="单位W"
+                android:maxLines="1"
+                android:text="8"
+                android:inputType="numberDecimal"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任务2:80J灵饰任务"
+                android:textColor="#f67"/>
+
+            <Button
+                android:id="@+id/calculate_ling_shi_bt"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:text="计算"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="需要点卡数 = "/>
+
+            <EditText
+                android:id="@+id/ling_shi_cost_edit"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="单位点"
+                android:text="333"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="80晶石/佩/手/耳/戒 = "/>
+
+            <EditText
+                android:id="@+id/ling_shi_price_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="例子:200/200/200/300/400"
+                android:text="195/195/195/320/410"
+                android:maxLines="1"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

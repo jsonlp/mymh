@@ -3,7 +3,6 @@ package com.lpan.my.mh.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.lpan.my.mh.R;
@@ -50,6 +49,9 @@ public class HomeFragment extends BaseFragment {
     private void initData() {
         List<HomeItemData> list = new ArrayList<>();
         list.add(new HomeItemData(HomeItemData.CALCULATE_TILI_TAG, "1 计算体活"));
+        list.add(new HomeItemData(HomeItemData.TI_HUO_WORTH_COMPARE, "2 体活价值比较"));
+        list.add(new HomeItemData(HomeItemData.KOU_DAI_XY, "3 口袋丹青"));
+
         getAdapter().add(list);
         getAdapter().notifyItemRangeChanged(0, list.size());
     }

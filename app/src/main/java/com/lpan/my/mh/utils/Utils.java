@@ -107,4 +107,8 @@ public class Utils {
         }
         return output.toByteArray();
     }
+
+    public static double keepTwoDecimal(double input){
+        return (double) Math.round(input * 100) / 100;
+    }
 }

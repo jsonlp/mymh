@@ -5,6 +5,8 @@ package com.lpan.my.mh.model;
  */
 public class HomeItemData {
     public static final String CALCULATE_TILI_TAG = "calculate_tili";
+    public static final String TI_HUO_WORTH_COMPARE = "ti_huo_worth_compare";
+    public static final String KOU_DAI_XY = "kou_dai_xy";
 
 
     private String tag;
