@@ -34,7 +34,6 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="单位元"
-                android:text="240"
                 android:maxLines="1"
                 android:inputType="numberDecimal"
                 android:textSize="12sp"/>
@@ -58,7 +57,6 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="单位元"
-                android:text="98"
                 android:maxLines="1"
                 android:inputType="numberDecimal"
                 android:textSize="12sp"/>
@@ -100,7 +98,6 @@
             <EditText
                 android:id="@+id/qiang_hua_cost_edit"
                 android:layout_width="60dp"
-                android:text="178"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:hint="单位点"
@@ -120,7 +117,6 @@
                 android:background="@null"
                 android:hint="单位W"
                 android:maxLines="1"
-                android:text="8"
                 android:inputType="numberDecimal"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -164,7 +160,6 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:hint="单位点"
-                android:text="333"
                 android:inputType="numberDecimal"
                 android:maxLines="1"
                 android:textSize="12sp"/>
@@ -189,7 +184,6 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="例子:200/200/200/300/400"
-                android:text="195/195/195/320/410"
                 android:maxLines="1"
                 android:textSize="12sp"/>
         </LinearLayout>

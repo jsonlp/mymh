@@ -1,11 +1,17 @@
 package com.lpan.my.mh.fragment;
 
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
 import com.lpan.my.mh.R;
+import com.lpan.my.mh.model.GameMoneyModel;
+import com.lpan.my.mh.model.LingShiModel;
+import com.lpan.my.mh.model.QiangHuaModle;
+import com.lpan.my.mh.utils.Preferences;
 import com.lpan.my.mh.utils.Utils;
 
 /**
@@ -21,6 +27,11 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
     private EditText ling_shi_price_edit;
     private Button calculate_qiang_hua_bt;
     private Button calculate_ling_shi_bt;
+
+    private GameMoneyModel mGameMoneyModel;
+    private LingShiModel mLingShiModel;
+    private QiangHuaModle mQiangHuaModle;
+    private Gson mGson = new Gson();
 
 
     @Override
@@ -43,6 +54,56 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
         calculate_qiang_hua_bt.setOnClickListener(this);
         calculate_ling_shi_bt.setOnClickListener(this);
 
+        initData();
+
+        cbg_price_edit.setText(getGameMoneyModel().getCbgPrece()+"");
+        game_time_price_edit.setText(getGameMoneyModel().getPointCardThousand()+"");
+        qiang_hua_cost_edit.setText(getQiangHuaModle().getCost()+"");
+        qiang_hua_price_edit.setText(getQiangHuaModle().getPrice()+"");
+        ling_shi_cost_edit.setText(getLingShiModel().getCost()+"");
+        ling_shi_price_edit.setText(getLingShiModel().getJingshi()+"/"+
+                getLingShiModel().getPeishi()+"/"+
+                getLingShiModel().getShouzhuo()+"/"+
+                getLingShiModel().getErshi()+"/"+
+                getLingShiModel().getJiezhi());
+
+    }
+
+    private void initData(){
+        String gamemoney = Preferences.getInstance().getString(Preferences.KEY_GAME_MONEY_INFO);
+        String lingshi = Preferences.getInstance().getString(Preferences.KEY_LING_SHI_INFO);
+        String qianghua = Preferences.getInstance().getString(Preferences.KEY_QIANG_HUA_INFO);
+
+        if (!TextUtils.isEmpty(gamemoney)) {
+            mGameMoneyModel = mGson.fromJson(gamemoney, GameMoneyModel.class);
+        }
+        if (!TextUtils.isEmpty(lingshi)) {
+            mLingShiModel = mGson.fromJson(lingshi, LingShiModel.class);
+        }
+        if (!TextUtils.isEmpty(qianghua)) {
+            mQiangHuaModle = mGson.fromJson(qianghua, QiangHuaModle.class);
+        }
+    }
+
+    private GameMoneyModel getGameMoneyModel(){
+        if (mGameMoneyModel == null) {
+            mGameMoneyModel = new GameMoneyModel();
+        }
+        return mGameMoneyModel;
+    }
+
+    private LingShiModel getLingShiModel(){
+        if (mLingShiModel == null) {
+            mLingShiModel = new LingShiModel();
+        }
+        return mLingShiModel;
+    }
+
+    private QiangHuaModle getQiangHuaModle(){
+        if (mQiangHuaModle == null) {
+            mQiangHuaModle = new QiangHuaModle();
+        }
+        return mQiangHuaModle;
     }
 
     @Override
@@ -58,8 +119,6 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-    //3000W 240
-    //
     private void calculateQiangHua() {
         double qiangHuaCost = Double.parseDouble(qiang_hua_cost_edit.getText().toString());
         double qiangHuaPrice = Double.parseDouble(qiang_hua_price_edit.getText().toString());
@@ -70,6 +129,12 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
         double total = Utils.keepTwoDecimal(times * qiangHuaPrice * 30.0d);
         double cbgPricePer = cbgPrice * 100 / 3000 / 100.0d;
         double getRMB = Utils.keepTwoDecimal(total * cbgPricePer * 0.95f);
+
+        getGameMoneyModel().setCbgPrece(cbgPrice);
+        getGameMoneyModel().setPointCardThousand(gameTimePrice);
+        getQiangHuaModle().setPrice(qiangHuaPrice);
+        getQiangHuaModle().setCost(qiangHuaCost);
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("1000点卡需要");
         stringBuilder.append(gameTimePrice);
@@ -86,7 +151,7 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
             stringBuilder.append("可赚:");
             stringBuilder.append(Utils.keepTwoDecimal(getRMB - gameTimePrice));
             stringBuilder.append("元!");
-        } else if (getRMB > gameTimePrice) {
+        } else if (getRMB < gameTimePrice) {
             stringBuilder.append("赔了:");
             stringBuilder.append(Utils.keepTwoDecimal(gameTimePrice - getRMB));
             stringBuilder.append("元!");
@@ -94,7 +159,7 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
             stringBuilder.append("不赚不赔,白嫖经验啦!");
         }
         showDialog(stringBuilder.toString());
-
+        saveData();
     }
 
     private void calculateLingShi() {
@@ -110,6 +175,16 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
         double lingshiPriceAv = jingshi + (shouzuo + peishi + ershi + jiezhi)/4;
         double gameTimePrice = Double.parseDouble(game_time_price_edit.getText().toString());
         double cbgPrice = Double.parseDouble(cbg_price_edit.getText().toString());
+
+
+        getLingShiModel().setJingshi(jingshi);
+        getLingShiModel().setShouzhuo(shouzuo);
+        getLingShiModel().setPeishi(peishi);
+        getLingShiModel().setErshi(ershi);
+        getLingShiModel().setJiezhi(jiezhi);
+        getLingShiModel().setCost(lingshiCost);
+        getGameMoneyModel().setCbgPrece(cbgPrice);
+        getGameMoneyModel().setPointCardThousand(gameTimePrice);
 
         double times = Utils.keepTwoDecimal(1000 * 100 / lingshiCost / 100.0d);
         double total = Utils.keepTwoDecimal(times * lingshiPriceAv * 1.0d);
@@ -131,7 +206,7 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
             stringBuilder.append("可赚:");
             stringBuilder.append(Utils.keepTwoDecimal(getRMB - gameTimePrice));
             stringBuilder.append("元!");
-        } else if (getRMB > gameTimePrice) {
+        } else if (getRMB < gameTimePrice) {
             stringBuilder.append("赔了:");
             stringBuilder.append(Utils.keepTwoDecimal(gameTimePrice - getRMB));
             stringBuilder.append("元!");
@@ -139,6 +214,7 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
             stringBuilder.append("不赚不赔,白嫖经验啦!");
         }
         showDialog(stringBuilder.toString());
+        saveData();
     }
 
     private void showDialog(String message) {
@@ -149,4 +225,30 @@ public class KouDaiFragment extends BaseFragment implements View.OnClickListener
                 .create();
         dialog.show();
     }
+
+
+    private void saveData(){
+        String gameMoney = mGson.toJson(getGameMoneyModel());
+        String lingshi = mGson.toJson(getLingShiModel());
+        String qianghua = mGson.toJson(getQiangHuaModle());
+
+        Preferences.getInstance().putString(Preferences.KEY_GAME_MONEY_INFO,gameMoney);
+        Preferences.getInstance().putString(Preferences.KEY_LING_SHI_INFO,lingshi);
+        Preferences.getInstance().putString(Preferences.KEY_QIANG_HUA_INFO,qianghua);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
